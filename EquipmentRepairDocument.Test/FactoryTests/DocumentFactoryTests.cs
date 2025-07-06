@@ -35,7 +35,6 @@ namespace EquipmentRepairDocument.Test.FactoryTests
             dbContext.ChangeTracker.Clear();
 
             var kksRequests = new List<KKSEquipmentRequest> { new KKSEquipmentRequest("20KAA22AA345 -- ", "Клапан запорный", "НГ-2265") };
-
             var requestFirst = new DocumentCreateRequest
             {
                 RegistrationDate = new DateTime(2024, 1, 1),
@@ -145,6 +144,7 @@ namespace EquipmentRepairDocument.Test.FactoryTests
                 KKSEquipment = kksEquipments,
             });
             await dbContext.SaveChangesAsync();
+            dbContext.ChangeTracker.Clear();
 
             var request = new DocumentCreateRequest
             {
@@ -186,6 +186,7 @@ namespace EquipmentRepairDocument.Test.FactoryTests
             await dbContext.RepairFacilities.AddAsync(repairFacility);
             await dbContext.DocumentTypes.AddAsync(documentType);
             await dbContext.SaveChangesAsync();
+            dbContext.ChangeTracker.Clear();
 
             var kksRequests = new List<KKSEquipmentRequest> { new KKSEquipmentRequest("20KAA22AA345 -- ", "Клапан запорный", "НГ-2265") };
 
@@ -225,6 +226,7 @@ namespace EquipmentRepairDocument.Test.FactoryTests
             await dbContext.RepairFacilities.AddAsync(repairFacility);
             await dbContext.DocumentTypes.AddAsync(documentType);
             await dbContext.SaveChangesAsync();
+            dbContext.ChangeTracker.Clear();
 
             var kksRequests = new List<KKSEquipmentRequest> { new KKSEquipmentRequest("20KAA22AA345 -- ", "Клапан запорный", "НГ-2265") };
 
@@ -275,6 +277,7 @@ namespace EquipmentRepairDocument.Test.FactoryTests
             await dbContext.RepairFacilities.AddAsync(repairFacility);
             await dbContext.DocumentTypes.AddAsync(documentType);
             await dbContext.SaveChangesAsync();
+            dbContext.ChangeTracker.Clear();
 
             var kksRequests = new List<KKSEquipmentRequest> { new KKSEquipmentRequest("20KAA22asdasdaAA345", "Клапан запорный", "НГ-2265") };
 

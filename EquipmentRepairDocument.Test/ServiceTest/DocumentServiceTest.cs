@@ -217,10 +217,12 @@ namespace EquipmentRepairDocument.Test.ServiceTest
             var documentFirst = await documentFactory.CreateDocumentAsync(requestFirst, CancellationToken.None);
             await dbContext.Documents.AddAsync(documentFirst, CancellationToken.None);
             await dbContext.SaveChangesAsync();
+            dbContext.ChangeTracker.Clear();
 
             var documentSecond = await documentFactory.CreateDocumentAsync(requestSecond, CancellationToken.None);
             await dbContext.Documents.AddAsync(documentSecond, CancellationToken.None);
             await dbContext.SaveChangesAsync();
+            dbContext.ChangeTracker.Clear();
 
             var regNumberFirstDocument = documentFirst.RegistrationNumber;
             var regNumberSecondDocument = documentSecond.RegistrationNumber;
