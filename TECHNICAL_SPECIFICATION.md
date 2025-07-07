@@ -128,7 +128,7 @@ R --> F{ВВР}
 R --> E{"Несколько ВВР к ИРД
 ВВР₁
 ВВР₂
-ВВР₃"}
+ВВР..."}
 E --> W["Обнаружен дефект"]
 F --> W
 W --> O{"АДО"}
@@ -142,7 +142,7 @@ P --> C{"Один ПО к ИРД"}
 P --> D{"Несколько ПО к ИРД
 ПО₁
 ПО₂
-ПО₃"}
+ПО..."}
 P --> |KKS меньше 5|X{Без ПО}
 D ---> H
 X ---> H
@@ -160,24 +160,22 @@ H --> L{АОМ}
 
 ```mermaid
 erDiagram
-	KIT-OF-DOCUMENTS{
-	    Guid MainDocumentId
-	    Guid RelatedDocumentId}
+	EXECUTE_REPAIR_DOCUMENT{
+	    Guid Id}
 	    
 	DOCUMENT{ 
 		Guid Id
 		Guid DocumentTypeId
 		Guid DivisionId
-		Guid PerfomerInDoc
 		Guid RepairFacilityId
 		DateTime RegistrationDate
 		DateTime RepairDate
 		DateTime ChangeDateRegistrNumber
-		string OrdinalNumber
-		string Note
-		string RegistrationNumber}	
+		int OrdinalNumber
+		string RegistrationNumber
+		string Note}	
 	    
-	DOCUMENT }o--o{ KIT-OF-DOCUMENTS: part   
+	DOCUMENT }o--o{ EXECUTE_REPAIR_DOCUMENT: part   
 
 	EQUIPMENT{ 
 		Guid Id
@@ -186,7 +184,8 @@ erDiagram
 		
 	EQUIPMENT-TYPE { 
 		Guid Id
-		string Name} 	
+		string Name
+		Guid EquipmentId} 	
 		
 	KKS-EQUIPMENT { 
 		Guid Id
@@ -204,7 +203,8 @@ erDiagram
 	DIVISION { 
 		Guid Id
 		string Name
-		string Abbreviation} 
+		string Abbreviation
+                byte Number} 
 	
 	DOCUMENT-TYPE ||--o{ DOCUMENT : indicates
 	DOCUMENT-TYPE { 
@@ -212,7 +212,7 @@ erDiagram
 		string Name
 		string Abbreviation
 		byte ExecutiveRepairDocNumber
-		bool IsOnlyTypeDocInRepairLog} 
+		bool MultipleUseInERD} 
 
 	PERFOMER }o--o{ DOCUMENT : works
 	PERFOMER { 
